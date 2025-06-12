@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-
   def create
     post = Post.new(post_params)
     post.save
@@ -11,11 +10,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
 
   def edit
