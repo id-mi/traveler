@@ -12,6 +12,21 @@
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
       </p>
     <% end %>
+    <% unless @user.id == current_user.id %>
+  <% if (current_user.following? @user) && (@user.following? current_user)  %>
+  <% if @is_room == true %>
+    <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary btn-lg">チャットを始める</a>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+    <% end %>
+  <% end %>
+  <% end %>
+<% end %>
+
     <% if current_user != @user %>
       <% if current_user.following?(@user) %>
         <p class="d-flex align-self-end">

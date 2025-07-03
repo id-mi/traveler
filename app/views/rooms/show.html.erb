@@ -1,0 +1,40 @@
+<div class="chat-container">
+
+  <% @entries.each do |e| %>
+    <% if @myUserId != e.user.id %>
+      <h2 class="chat-title"><%= e.user.name %>さんとのトークルーム</h2>
+    <% end %>
+  <% end %>
+
+  <div class="chat-messages">
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <% if @myUserId == m.user.id %>
+          <!-- 自分のメッセージ -->
+          <div class="message message-own">
+            <div class="message-content">
+              <p><%= m.message %></p>
+            </div>
+          </div>
+        <% else %>
+          <!-- 相手のメッセージ -->
+          <div class="message message-other">
+            <div class="message-sender"><%= m.user.name %></div>
+            <div class="message-content">
+              <p><%= m.message %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="chat-form">
+    <%= form_for @message do |f| %>
+      <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "chat-input" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信する", class: "chat-submit" %>
+    <% end %>
+  </div>
+
+</div>
