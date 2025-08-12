@@ -1,5 +1,7 @@
 <div class="chat-container">
 
+  <div class="chat-wrapper">
+
   <% @entries.each do |e| %>
     <% if @myUserId != e.user.id %>
       <h2 class="chat-title"><%= e.user.name %>さんとのトークルーム</h2>
@@ -8,6 +10,7 @@
 
   <div class="chat-messages">
     <% if @messages.present? %>
+
       <% @messages.each do |m| %>
         <% if @myUserId == m.user.id %>
           <!-- 自分のメッセージ -->
@@ -38,3 +41,5 @@
   </div>
 
 </div>
+
+

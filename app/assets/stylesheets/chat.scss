@@ -1,90 +1,103 @@
 .chat-container {
-  max-width: 800px;          
-  margin: 0 auto;            /* 画面中央寄せ */
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
+  width: 100vw;
   height: 100vh;
   background-image: url("/assets/mypage-scaled.jpg");
-  background-size: cover;         // 画面にぴったりフィット
-  background-position: center;    // 中央に配置
-  background-repeat: no-repeat;   // 繰り返さない
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chat-wrapper {
+  width: 80%;
+  max-width: 1000px;
+  height: 90vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 1rem; /* 左右余白追加 */
 }
 
 .chat-title {
   text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin: 1.5rem 0;
+  flex-shrink: 0;
+  padding-bottom: 0.5rem;
 }
 
 .chat-messages {
   flex-grow: 1;
   overflow-y: auto;
-  background: #fff;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 10px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  background: white;
+  margin-bottom: 1.5rem;
+  display: block;
 }
 
 .message {
   max-width: 70%;
   margin-bottom: 1rem;
+  width: fit-content;
+  display: flex;
 
   &.message-own {
     margin-left: auto;
+    justify-content: flex-end;
 
     .message-content {
-      display: inline-block;
-      max-width: 70%;
+      background-color: #dcf8c6;
       padding: 0.5rem 1rem;
       border-radius: 15px;
       word-wrap: break-word;
       white-space: normal;
-      background-color: #dcf8c6; /* 自分のメッセージ用 */
       text-align: left;
+      display: inline-block;
+      max-width: 100%;
     }
   }
 
-  &.message-other .message-content {
-  display: inline-block;      /* テキスト幅に合わせる */
-  max-width: 70%;             /* 最大幅を指定 */
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
-  word-wrap: break-word;
-  white-space: normal;
-  background-color: #f1f0f0;
-  text-align: left;
-  }
-
+  &.message-other {
     margin-right: auto;
-
-    .message-sender {
-      font-size: 0.8rem;
-      color: #888;
-      margin-bottom: 2px;
-    }
+    justify-content: flex-start;
 
     .message-content {
-      background: #f1f0f0;
+      background-color: #f1f0f0;
       padding: 0.5rem 1rem;
       border-radius: 15px;
+      word-wrap: break-word;
+      white-space: normal;
+      text-align: left;
+      display: inline-block;
+      max-width: 100%;
     }
   }
-
+}
 
 .chat-form {
+  flex-shrink: 0;
+  padding: 0 0 1rem 0;
+  width: 100%;
+  max-width: 900px;
+}
+
+.chat-form form {
   display: flex;
+  width: 100%;
   gap: 0.5rem;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  max-width: 800px;          /* フォームの最大幅を親に合わせて広く */
-  margin: 0 auto;            /* 中央寄せ */
 }
 
 .chat-input {
-  flex-grow: 1;              /* 入力欄が可能な限り横に広がる */
-  min-width: 400px;          /* 横に長くしたい最低幅を指定 */
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 6px;
@@ -92,12 +105,10 @@
 }
 
 .chat-submit {
-  background: #b9bbbc;
+  background: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
-
-
