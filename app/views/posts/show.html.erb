@@ -50,7 +50,7 @@
               <%= comment.comment %>
               <% if comment.user == current_user %>
                 <div class="comment-delete">
-                  <%= link_to "削除する", post_comment_path(comment.post, comment),  data: { turbo_method: :delete }, class: "btn-sm btn-danger" %>
+                  <%= link_to "削除", post_comment_path(comment.post, comment),  data: { turbo_method: :delete }, class: "btn-sm btn-danger" %>
                 </div>
               <% end %>
             </div>
